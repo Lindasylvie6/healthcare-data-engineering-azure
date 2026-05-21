@@ -1,4 +1,4 @@
-# 🏥 Healthcare Data Warehouse — End-to-End Data Engineering Project
+# 🏥 Healthcare Data Warehouse  End-to-End Data Engineering Project
 
 ## Overview
 
