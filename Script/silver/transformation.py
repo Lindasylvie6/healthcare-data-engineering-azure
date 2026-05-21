@@ -108,7 +108,7 @@ print(f" Procedures: {df_procedures_silver.count()}")
 
 #####################################################################################################
 
-# Silver Medications
+# Silver Medications (full row dedup - no unique ID)
 df_medications = spark.read.format("delta").load(f"{BRONZE_PATH}medications")
 
 df_medications_silver = df_medications \
@@ -117,10 +117,10 @@ df_medications_silver = df_medications \
     .withColumn("route", trim(upper(col("route")))) \
     .withColumn("frequency", trim(upper(col("frequency")))) \
     .withColumn("cost", round(col("cost"), 2)) \
-    .dropDuplicates(["medication_id"])
+    .dropDuplicates()
 
 df_medications_silver.write.format("delta").mode("overwrite").save(f"{SILVER_PATH}medications")
-print(f" Medications: {df_medications_silver.count()}")
+print(f" Medications fixed count: {df_medications_silver.count()}")
 
 #####################################################################################################
 
