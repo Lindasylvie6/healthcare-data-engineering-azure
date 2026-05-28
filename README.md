@@ -206,7 +206,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 
 ## 👤 Author
 
-**Linda Sylvie**
+**Sylvie Linda**
 Data Analyst → Data Engineer
 Indianapolis, IN
 
