@@ -27,7 +27,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 
 ## 🏗️ Architecture
 
-![Medelion_Architecture](docs/Medelion_Architecture.png)
+![Medallion_Architecture](docs/Medallion_Architecture.png)
 ![Data_Model](docs/Data_Model.png)
 
 
@@ -142,7 +142,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 - Billed Amount by Gender (Female $67M vs Male $46M)
 
 ### Page 2 — Denials Analysis
-![Denials_Analysis](docs/Denial_Analysis.png)
+![Denials_Analysis](docs/Denials_Analysis.png) 
 
 - Total Denied: **$9.65M** | Appeal Filed Rate: **89.96%** | Appeal Success Rate: **80.04%**
 - Top denial reason: Duplicate claim/service
