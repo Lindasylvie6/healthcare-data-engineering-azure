@@ -16,8 +16,6 @@ This solution implements a modern Medallion Architecture to ingest, transform, g
 ## 📚 Table of Contents
 
 - [📋 Overview](#-overview)
-- [📋 Project Highlights](#-Project Highlights)
-- [Business Value](#-Business Value)
 - [🏗️ Architecture](#️-architecture)
 - [🛠️ Tech Stack](#️-tech-stack)
 - [📊 Datasets](#-datasets)
@@ -45,7 +43,7 @@ A production-grade, end-to-end data engineering pipeline built on Microsoft Azur
 
 The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core business questions around patient demographics, claims analysis, and denial root cause analysis.
 
-## 📋 Project Highlights
+### 📋 Project Highlights
 
 * Built enterprise Medallion Architecture (Bronze / Silver / Gold)
 * Automated orchestration using Azure Data Factory
@@ -57,9 +55,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 * Enabled DirectQuery reporting architecture
 
 
----
-
-## Business Value
+### Business Value
 
 Healthcare organizations face significant revenue leakage due to denied claims, delayed reimbursements, and inconsistent payer processing.
 
