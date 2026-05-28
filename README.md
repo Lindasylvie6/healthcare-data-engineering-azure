@@ -1,11 +1,11 @@
-# 🏥 🏥 Healthcare Data Warehouse | Azure Medallion Architecture (ADF + Databricks + Synapse + Power BI)
+# 🏥 Healthcare Data Warehouse | Azure Medallion Architecture (ADF + Databricks + Synapse + Power BI)
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 ![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 ![Delta Lake](https://img.shields.io/badge/Delta_Lake-0078D4?style=for-the-badge&logo=apache-spark&logoColor=white)
-![Synapse](https://img.shields.io/badge/Synapse-Analytics-purple)  
+![Synapse](https://img.shields.io/badge/Synapse_Analytics-8661C5?style=for-the-badge&logo=microsoft-azure&logoColor=white) 
 
 # Healthcare Revenue Cycle Analytics Platform
 
