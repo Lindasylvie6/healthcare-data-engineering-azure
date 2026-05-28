@@ -28,8 +28,6 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 ## 🏗️ Architecture
 
 ![Medallion_Architecture](docs/Medallion_Architecture.png)
-![Data_Model](docs/Data_Model.png)
-
 
 ---
 
@@ -86,13 +84,14 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 | Numeric rounding | Financial columns rounded to 2 decimal places |
 | Deduplication | By ID column or full row depending on data quality |
 
-**Key Finding:** Source data ID columns are not always unique — deduplication strategy validated per table.
+**Key Finding:** Source data ID columns are not always unique: deduplication strategy validated per table.
 
-**Date format fix:** `claims_and_billing` used `DD-MM-YYYY HH:MM` format — fixed using explicit format string.
+**Date format fix:** `claims_and_billing` used `DD-MM-YYYY HH:MM` format : fixed using explicit format string.
 
 ---
 
-## 🥇 Gold Layer — Star Schema
+## 🥇 Gold Layer : Star Schema
+![Data_Model](docs/Data_Model.png)
 
 **Notebook:** `03_gold_aggregations`
 
@@ -186,7 +185,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 
 - **Service Principal + ADLS Gen2** is the enterprise standard for secure storage access
 - **Medallion Architecture** separates raw, clean, and business-ready data cleanly
-- **Source data quality** must be validated — ID columns are not always unique, date formats vary
+- **Source data quality** must be validated ; ID columns are not always unique, date formats vary
 - **Unity Catalog** requires proper external location setup with managed identity credentials
 - **Synapse Serverless SQL** is an excellent serving layer for Delta Lake tables
 - **ADF + Databricks** is a powerful orchestration + compute pattern widely used in enterprise
@@ -195,9 +194,9 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 
 ## 📊 Business Insights
 
-1. **91.43% claim approval rate** — 8.57% denial rate represents $9.65M in denied claims
-2. **Duplicate claims** are the #1 denial reason — process improvement opportunity
-3. **80% appeal success rate** — suggests many initial denials are incorrect
+1. **91.43% claim approval rate** 8.57% denial rate represents $9.65M in denied claims
+2. **Duplicate claims** are the #1 denial reason ; process improvement opportunity
+3. **80% appeal success rate** : suggests many initial denials are incorrect
 4. **California** drives 72% of all billed amounts
 5. **Hispanic patients** have the highest claim volume and denial amounts
 6. **65+ age group** represents 30% of all claims
