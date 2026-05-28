@@ -1,7 +1,3 @@
-
-
-
-
 # 🏥 🏥 Healthcare Data Warehouse | Azure Medallion Architecture (ADF + Databricks + Synapse + Power BI)
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 ![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
@@ -10,9 +6,18 @@
 ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 ![Delta Lake](https://img.shields.io/badge/Delta_Lake-0078D4?style=for-the-badge&logo=apache-spark&logoColor=white)
 
+# Healthcare Revenue Cycle Analytics Platform
+
+Enterprise-scale Azure Data Engineering project built using Azure Data Factory, Databricks, ADLS Gen2, Synapse Analytics, and Power BI.
+
+This solution implements a modern Medallion Architecture to ingest, transform, govern, and analyze healthcare claims and denial data for operational and financial reporting.
+
+
 ## 📚 Table of Contents
 
 - [📋 Overview](#-overview)
+- [📋 Project Highlights](#-Project Highlights)
+- [Business Value](#-Business Value)
 - [🏗️ Architecture](#️-architecture)
 - [🛠️ Tech Stack](#️-tech-stack)
 - [📊 Datasets](#-datasets)
@@ -40,11 +45,39 @@ A production-grade, end-to-end data engineering pipeline built on Microsoft Azur
 
 The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core business questions around patient demographics, claims analysis, and denial root cause analysis.
 
+## 📋 Project Highlights
+
+* Built enterprise Medallion Architecture (Bronze / Silver / Gold)
+* Automated orchestration using Azure Data Factory
+* Processed healthcare claims and denials data with Databricks
+* Implemented Delta Lake for scalable storage and ACID transactions
+* Created Synapse semantic layer for enterprise reporting
+* Developed interactive Power BI dashboards for revenue cycle analytics
+* Designed dimensional models and healthcare KPI aggregations
+* Enabled DirectQuery reporting architecture
+
+
+---
+
+## Business Value
+
+Healthcare organizations face significant revenue leakage due to denied claims, delayed reimbursements, and inconsistent payer processing.
+
+This platform centralizes operational healthcare data into a governed analytics environment to provide:
+
+* Visibility into denial trends
+* Claims processing performance tracking
+* Insurance payer analysis
+* Revenue cycle KPIs
+* Executive reporting capabilities
+* Improved operational decision-making
+
 ---
 
 ## 🏗️ Architecture
 
 ![Medallion_Architecture](docs/Medallion_Architecture.png)
+
 
 ---
 
@@ -108,7 +141,9 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 ---
 
 ## 🥇 Gold Layer : Star Schema
+
 ![Data_Model](docs/Data_Model.png)
+
 
 **Notebook:** `03_gold_aggregations`
 
@@ -131,7 +166,9 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 ---
 
 ## ⚙️ ADF Orchestration
+
 ![Pipeline_Orchestration](docs/Pipeline_Orchestration.png)
+
 
 | Pipeline | Description |
 |----------|-------------|
@@ -149,6 +186,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 3-page interactive dashboard connected via Azure Synapse Analytics Serverless SQL:
 
 ### Page 1 — Claims Analysis
+
 ![Claims_Analysis](docs/Claims_Analysis.png)
 
 - Total Billed: **$112.9M** | Total Paid: **$72.8M** | Total Claims: **70K** | Total Denials: **6K**
@@ -158,6 +196,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 - Billed Amount by Gender (Female $67M vs Male $46M)
 
 ### Page 2 — Denials Analysis
+
 ![Denials_Analysis](docs/Denials_Analysis.png) 
 
 - Total Denied: **$9.65M** | Appeal Filed Rate: **89.96%** | Appeal Success Rate: **80.04%**
@@ -167,6 +206,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 - Denials by Gender and Ethnicity
 
 ### Page 3 — Patient Demographics & Geography
+
 ![Patient_Democraphics](docs/Patient_Democraphics.png)
 
 - Billed Amount by State treemap (CA dominates at $81.44M)
