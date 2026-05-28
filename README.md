@@ -28,7 +28,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 ## 🏗️ Architecture
 
 ![Medelion_Architecture](docs/Medelion_Architecture.png)
-![Data Model](docs/Data Model.png)
+![Data_Model](docs/Data_Model.png)
 
 
 ---
@@ -115,6 +115,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 ---
 
 ## ⚙️ ADF Orchestration
+![Data_Model](docs/Data_Model.png)
 
 | Pipeline | Description |
 |----------|-------------|
