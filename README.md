@@ -27,50 +27,9 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 
 ## 🏗️ Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        DATA SOURCES                              │
-│              9 CSV Files (550K+ rows total)                      │
-└─────────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                   ADLS Gen2 — Landing Container                  │
-│              adlshospitaldwh.dfs.core.windows.net               │
-│              Service Principal Authentication (OAuth 2.0)        │
-└─────────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│              AZURE DATA FACTORY (adf-hospital-2026)             │
-│                                                                  │
-│   pl_master_full_refresh (Daily 2AM UTC)                        │
-│   ├── pl_master_bronze_load ──► 01_bronze_ingestion             │
-│   ├── pl_master_silver_load ──► 02_silver_transformation        │
-│   └── pl_master_gold_load   ──► 03_gold_aggregations            │
-└─────────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│           AZURE DATABRICKS (hospital-Databricls)                │
-│                                                                  │
-│  🥉 Bronze Layer    │  🥈 Silver Layer   │  🥇 Gold Layer       │
-│  Raw + Audit cols   │  Cleaned + Typed   │  Star Schema KPIs    │
-│  9 Delta tables     │  9 Delta tables    │  3 Facts + 3 Dims    │
-└─────────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│          AZURE SYNAPSE ANALYTICS (synapse-hospitaldwh)          │
-│          Serverless SQL Pool — Views on Gold Delta tables        │
-└─────────────────────────┬───────────────────────────────────────┘
-                          │
-                          ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    POWER BI DASHBOARD                            │
-│   Claims Analysis │ Denials Analysis │ Demographics & Geography  │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Medelion_Architecture](docs/Medelion_Architecture.png)
+![Data Model](docs/Data Model.png)
+
 
 ---
 
