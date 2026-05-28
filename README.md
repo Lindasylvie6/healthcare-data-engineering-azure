@@ -5,7 +5,7 @@
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 ![Delta Lake](https://img.shields.io/badge/Delta_Lake-0078D4?style=for-the-badge&logo=apache-spark&logoColor=white)
-![Synapse](https://img.shields.io/badge/Synapse-Analytics-purple)
+![Synapse](https://img.shields.io/badge/Synapse-Analytics-purple)  
 
 # Healthcare Revenue Cycle Analytics Platform
 
