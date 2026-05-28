@@ -214,28 +214,28 @@ After building the Gold layer and connecting Power BI via Azure Synapse Analytic
 
 ## Root Cause Investigation
 
-### Step 1 — Check Gold layer
+### Step 1 : Check Gold layer
 ```python
 df_check = spark.read.format("delta").load(f"{GOLD_PATH}fact_claims")
 df_check.select("claim_billing_date", "claim_month", "claim_month_name").show(5)
 ```
 **Result:** All NULL ❌
 
-### Step 2 — Check Silver layer
+### Step 2 : Check Silver layer
 ```python
 df = spark.read.format("delta").load(f"{SILVER_PATH}claims_and_billing")
 df.select("claim_billing_date").show(5)
 ```
 **Result:** All NULL ❌
 
-### Step 3 — Check Bronze layer
+### Step 3 : Check Bronze layer
 ```python
 df_bronze = spark.read.format("delta").load(f"{BRONZE_PATH}claims_and_billing")
 df_bronze.select("claim_billing_date").show(5)
 ```
 **Result:** All NULL ❌
 
-### Step 4 — Check Raw CSV
+### Step 4 : Check Raw CSV
 ```python
 df_raw = spark.read.format("csv") \
     .option("header", "true") \
@@ -330,17 +330,17 @@ df_fact_claims.write.format("delta").mode("overwrite").save(f"{GOLD_PATH}fact_cl
 +------------------+------------+----------------+-------------+
 ```
 
-Power BI line chart now shows monthly trends correctly ✅
+Power BI line chart now shows monthly trends correctly 
 
 ---
 
 ## Key Learnings
 
-1. **Always validate date formats** in source data before ingestion — don't rely on `inferSchema`
+1. **Always validate date formats** in source data before ingestion, don't rely on `inferSchema`
 2. **inferSchema can silently return NULL** for dates it can't parse instead of throwing an error
 3. **Use `inferSchema=false`** for date columns with non-standard formats and parse explicitly
 4. **Test date columns at every layer** (Bronze → Silver → Gold) to catch issues early
-5. **NULL propagation** — a NULL in Bronze will flow through to Silver and Gold silently
+5. **NULL propagation** : a NULL in Bronze will flow through to Silver and Gold silently
 
 ---
 
@@ -356,9 +356,9 @@ def check_null_dates(df, date_columns, table_name):
         total_count = df.count()
         null_pct = (null_count / total_count) * 100
         if null_pct > 10:
-            print(f"⚠️ WARNING: {table_name}.{col_name} has {null_pct:.1f}% NULL values!")
+            print(f" WARNING: {table_name}.{col_name} has {null_pct:.1f}% NULL values!")
         else:
-            print(f"✅ {table_name}.{col_name}: {null_pct:.1f}% NULL ({null_count} rows)")
+            print(f" {table_name}.{col_name}: {null_pct:.1f}% NULL ({null_count} rows)")
 
 check_null_dates(df_bronze_claims, ["claim_billing_date"], "claims_and_billing")
 ```
