@@ -19,7 +19,7 @@
 - [📊 Datasets](#-datasets)
 - [🥉 Bronze Layer](#-bronze-layer)
 - [🥈 Silver Layer](#-silver-layer)
-- [🥇 Gold Layer — Star Schema](#-gold-layer--star-schema)
+- [🥇 Gold Layer : Star Schema](#-gold-layer--star-schema)
 - [⚙️ ADF Orchestration](#️-adf-orchestration)
 - [📈 Power BI Dashboard](#-power-bi-dashboard)
 - [🔐 Security](#-security)
