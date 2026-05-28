@@ -11,6 +11,24 @@
 ![SQL](https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
 ![Delta Lake](https://img.shields.io/badge/Delta_Lake-0078D4?style=for-the-badge&logo=apache-spark&logoColor=white)
 
+## 📚 Table of Contents
+
+- [📋 Overview](#-overview)
+- [🏗️ Architecture](#️-architecture)
+- [🛠️ Tech Stack](#️-tech-stack)
+- [📊 Datasets](#-datasets)
+- [🥉 Bronze Layer](#-bronze-layer)
+- [🥈 Silver Layer](#-silver-layer)
+- [🥇 Gold Layer — Star Schema](#-gold-layer--star-schema)
+- [⚙️ ADF Orchestration](#️-adf-orchestration)
+- [📈 Power BI Dashboard](#-power-bi-dashboard)
+- [🔐 Security](#-security)
+- [☁️ Azure Infrastructure](#️-azure-infrastructure)
+- [💡 Key Learnings](#-key-learnings)
+- [📊 Business Insights](#-business-insights)
+- [🔧 Troubleshooting: Date Columns NULL](#-troubleshooting-date-columns-showing-null-in-power-bi)
+- [👤 Author](#-author)
+
 ## 📋 Overview
 
 A production-grade, end-to-end data engineering pipeline built on Microsoft Azure. This project demonstrates a complete **Medallion Architecture** (Bronze → Silver → Gold) using:
