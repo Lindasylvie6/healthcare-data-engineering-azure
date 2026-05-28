@@ -143,6 +143,7 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 
 ### Page 2 — Denials Analysis
 ![Denials_Analysis](docs/Denial_Analysis.png)
+
 - Total Denied: **$9.65M** | Appeal Filed Rate: **89.96%** | Appeal Success Rate: **80.04%**
 - Top denial reason: Duplicate claim/service
 - Final Outcome: PAID 80.04% | WRITTEN OFF 10.08% | REPROCESSED 9.88%
@@ -150,7 +151,8 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 - Denials by Gender and Ethnicity
 
 ### Page 3 — Patient Demographics & Geography
-![Claims_Analysis](docs/Claims_Analysis.png)
+![Patient_Democraphics](docs/Patient_Democraphics.png)
+
 - Billed Amount by State treemap (CA dominates at $81.44M)
 - Claims by Ethnicity (Hispanic 27.9K, White 25.3K, Asian 16.9K)
 - Claims by Age Group (65+ leads at 30.03%)
