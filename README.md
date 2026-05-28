@@ -204,6 +204,165 @@ The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core
 
 ---
 
+# 🔧 Troubleshooting: Date Columns Showing NULL in Power BI
+
+## Problem
+
+After building the Gold layer and connecting Power BI via Azure Synapse Analytics, the **Amount Billed by Month** line chart was blank. Investigation revealed that `claim_month`, `claim_month_name`, and `claim_quarter` columns were all **NULL** in the `fact_claims` table.
+
+---
+
+## Root Cause Investigation
+
+### Step 1 — Check Gold layer
+```python
+df_check = spark.read.format("delta").load(f"{GOLD_PATH}fact_claims")
+df_check.select("claim_billing_date", "claim_month", "claim_month_name").show(5)
+```
+**Result:** All NULL ❌
+
+### Step 2 — Check Silver layer
+```python
+df = spark.read.format("delta").load(f"{SILVER_PATH}claims_and_billing")
+df.select("claim_billing_date").show(5)
+```
+**Result:** All NULL ❌
+
+### Step 3 — Check Bronze layer
+```python
+df_bronze = spark.read.format("delta").load(f"{BRONZE_PATH}claims_and_billing")
+df_bronze.select("claim_billing_date").show(5)
+```
+**Result:** All NULL ❌
+
+### Step 4 — Check Raw CSV
+```python
+df_raw = spark.read.format("csv") \
+    .option("header", "true") \
+    .option("inferSchema", "true") \
+    .load(f"{LANDING_PATH}claims_and_billing.csv")
+
+df_raw.select("claim_billing_date").show(5)
+print(df_raw.schema["claim_billing_date"].dataType)
+```
+**Result:**
+```
++--------------------+
+|  claim_billing_date|
++--------------------+
+|                NULL|
+|                NULL|
+|                NULL|
++--------------------+
+DateType()
+```
+
+---
+
+## Root Cause
+
+The raw CSV file uses **`DD-MM-YYYY HH:MM`** date format:
+```
+06-02-2025 00:00
+01-05-2025 00:00
+23-02-2025 00:00
+```
+
+PySpark's `inferSchema` recognized the column as `DateType()` but **failed to parse** the non-standard format, returning NULL silently instead of raising an error.
+
+The standard `to_date()` function defaults to `YYYY-MM-DD` format — so the Silver transformation was converting an already-NULL value, propagating the issue all the way to Gold.
+
+---
+
+## Fix
+
+### Silver Layer Fix
+Read the raw CSV with `inferSchema=false` and parse the date explicitly:
+
+```python
+from pyspark.sql.functions import col, to_date, to_timestamp
+
+# Read with inferSchema disabled to preserve raw string values
+df_claims_raw = spark.read.format("csv") \
+    .option("header", "true") \
+    .option("inferSchema", "false") \
+    .load(f"{LANDING_PATH}claims_and_billing.csv")
+
+# Parse date using explicit format string
+df_claims_silver = df_claims_raw \
+    .withColumn(
+        "claim_billing_date",
+        to_date(to_timestamp(col("claim_billing_date"), "dd-MM-yyyy HH:mm"))
+    ) \
+    # ... other transformations
+```
+
+### Gold Layer — Rebuild fact_claims
+After fixing silver, rebuild the gold fact table to pick up the corrected dates:
+
+```python
+df_fact_claims = spark.sql("""
+    SELECT
+        c.*,
+        YEAR(c.claim_billing_date) AS claim_year,
+        MONTH(c.claim_billing_date) AS claim_month,
+        DATE_FORMAT(c.claim_billing_date, 'MMMM') AS claim_month_name,
+        QUARTER(c.claim_billing_date) AS claim_quarter
+    FROM claims_and_billing c
+    LEFT JOIN patients p ON c.patient_id = p.patient_id
+""")
+
+df_fact_claims.write.format("delta").mode("overwrite").save(f"{GOLD_PATH}fact_claims")
+```
+
+---
+
+## Result After Fix
+
+```
++------------------+------------+----------------+-------------+
+|claim_billing_date|claim_month |claim_month_name|claim_quarter|
++------------------+------------+----------------+-------------+
+|      2025-03-27  |     3      |     March      |      1      |
+|      2025-04-03  |     4      |     April      |      2      |
+|      2025-02-17  |     2      |    February    |      1      |
+|      2025-03-31  |     3      |     March      |      1      |
++------------------+------------+----------------+-------------+
+```
+
+Power BI line chart now shows monthly trends correctly ✅
+
+---
+
+## Key Learnings
+
+1. **Always validate date formats** in source data before ingestion — don't rely on `inferSchema`
+2. **inferSchema can silently return NULL** for dates it can't parse instead of throwing an error
+3. **Use `inferSchema=false`** for date columns with non-standard formats and parse explicitly
+4. **Test date columns at every layer** (Bronze → Silver → Gold) to catch issues early
+5. **NULL propagation** — a NULL in Bronze will flow through to Silver and Gold silently
+
+---
+
+## Prevention
+
+Add a data quality check after Bronze ingestion:
+
+```python
+# Data quality check for date columns
+def check_null_dates(df, date_columns, table_name):
+    for col_name in date_columns:
+        null_count = df.filter(df[col_name].isNull()).count()
+        total_count = df.count()
+        null_pct = (null_count / total_count) * 100
+        if null_pct > 10:
+            print(f"⚠️ WARNING: {table_name}.{col_name} has {null_pct:.1f}% NULL values!")
+        else:
+            print(f"✅ {table_name}.{col_name}: {null_pct:.1f}% NULL ({null_count} rows)")
+
+check_null_dates(df_bronze_claims, ["claim_billing_date"], "claims_and_billing")
+```
+
 ## 👤 Author
 
 **Sylvie Linda**
