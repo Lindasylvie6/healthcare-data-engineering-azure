@@ -34,17 +34,13 @@ This solution implements a modern Medallion Architecture to ingest, transform, g
 
 ## 📋 Overview
 
-A production-grade, end-to-end data engineering pipeline built on Microsoft Azure. This project demonstrates a complete **Medallion Architecture** (Bronze → Silver → Gold) using:
-
 - **Azure Data Factory** for orchestration and scheduling
 - **Azure Databricks** for distributed data transformation (PySpark + SQL)
 - **ADLS Gen2** as the Delta Lake storage layer
 - **Azure Synapse Analytics** as the serving layer
 - **Power BI** for business intelligence dashboards
 
-The pipeline processes **9 healthcare datasets (~550K rows)** and answers 3 core business questions around patient demographics, claims analysis, and denial root cause analysis.
-
-### 📋 Project Highlights
+###  Project Highlights
 
 * Built enterprise Medallion Architecture (Bronze / Silver / Gold)
 * Automated orchestration using Azure Data Factory
