@@ -30,6 +30,6 @@ for table in tables:
         .mode("overwrite") \
         .save(f"{BRONZE_PATH}{table}")
     
-    print(f"✅ {table}: {df_bronze.count()} rows written to bronze")
+    print(f" {table}: {df_bronze.count()} rows written to bronze")
 
 print("\n Bronze ingestion complete!")
