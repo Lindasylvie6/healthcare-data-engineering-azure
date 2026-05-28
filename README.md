@@ -1,4 +1,4 @@
-# 🏥 Healthcare Data Warehouse | Azure Medallion Architecture (ADF + Databricks + Synapse + Power BI)
+# 🏥 Healthcare Revenue Cycle Analytics Platform
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)
 ![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
@@ -7,7 +7,7 @@
 ![Delta Lake](https://img.shields.io/badge/Delta_Lake-0078D4?style=for-the-badge&logo=apache-spark&logoColor=white)
 ![Synapse](https://img.shields.io/badge/Synapse_Analytics-8661C5?style=for-the-badge&logo=microsoft-azure&logoColor=white) 
 
-# Healthcare Revenue Cycle Analytics Platform
+
 
 Enterprise-scale Azure Data Engineering project built using Azure Data Factory, Databricks, ADLS Gen2, Synapse Analytics, and Power BI.
 
