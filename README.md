@@ -133,7 +133,7 @@ This platform centralizes operational healthcare data into a governed analytics 
 
 ---
 
-## 🥇 Gold Layer : Star Schema
+## 🥇 Gold Layer : Galaxy Schema
 
 ![Data_Model](docs/Data_Model.png)
 
