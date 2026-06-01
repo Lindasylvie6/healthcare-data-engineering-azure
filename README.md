@@ -22,7 +22,7 @@ This solution implements a modern Medallion Architecture to ingest, transform, g
 - [📊 Datasets](#-datasets)
 - [🥉 Bronze Layer](#-bronze-layer)
 - [🥈 Silver Layer](#-silver-layer)
-- [🥇 Gold Layer : Star Schema](#-gold-layer--star-schema)
+- [🥇 Gold Layer : Galaxy Schema](#-gold-layer--galaxy-schema)
 - [⚙️ ADF Orchestration](#️-adf-orchestration)
 - [📈 Power BI Dashboard](#-power-bi-dashboard)
 - [🔐 Security](#-security)
